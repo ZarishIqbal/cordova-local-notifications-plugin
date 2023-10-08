@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-local-notification-plugin",
   "version": "0.0.1",
-  "description": "Schedule Local Notifications",
+  "description": "Schedule Notifications",
   "cordova": {
     "id": "cordova-plugin-local-notification-plugin",
     "platforms": [
@@ -9,17 +9,17 @@
       "ios"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin.git"
+  },
   "keywords": [
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
   ],
   "author": "Zarish Iqbal",
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin.git"
-  },
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin/issues"
   },
