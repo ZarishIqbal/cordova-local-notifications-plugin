@@ -15,5 +15,13 @@
     "cordova-ios"
   ],
   "author": "Zarish Iqbal",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin/issues"
+  },
+  "homepage": "https://github.com/ZarishIqbal/ZarishIqbal-cordova-local-notifications-plugin#readme"
 }
