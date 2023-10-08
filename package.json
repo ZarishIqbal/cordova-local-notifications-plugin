@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-local-notification-plugin",
+  "version": "0.0.1",
+  "description": "Schedule Local Notifications",
+  "cordova": {
+    "id": "cordova-plugin-local-notification-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Zarish Iqbal",
+  "license": "Apache-2.0"
+}
