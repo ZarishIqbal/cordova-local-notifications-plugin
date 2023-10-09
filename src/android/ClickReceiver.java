@@ -25,8 +25,8 @@ import static de.appplant.cordova.plugin.localnotification.LocalNotification.fir
 import static de.appplant.cordova.plugin.notification.Options.EXTRA_LAUNCH;
 import static de.appplant.cordova.plugin.notification.Request.EXTRA_LAST;
 
-import android.app.RemoteInput;
 import android.os.Bundle;
+import androidx.core.app.RemoteInput;
 import de.appplant.cordova.plugin.notification.Notification;
 import de.appplant.cordova.plugin.notification.receiver.AbstractClickReceiver;
 import org.json.JSONException;
