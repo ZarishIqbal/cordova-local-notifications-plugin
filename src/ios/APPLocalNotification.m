@@ -636,6 +636,7 @@ UNNotificationPresentationOptions const OptionList = UNNotificationPresentationO
  */
 - (void) fireEvent:(NSString*)event
 {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     NSMutableDictionary* data = [[NSMutableDictionary alloc] init];
 
     [self fireEvent:event notification:NULL data:data];
@@ -703,6 +704,11 @@ UNNotificationPresentationOptions const OptionList = UNNotificationPresentationO
     } else {
         [self.eventQueue addObject:js];
     }
+}
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
 }
 
 @end
