@@ -168,6 +168,8 @@ public class LocalNotification extends CordovaPlugin {
               notification(args, command);
             } else if (action.equals("notifications")) {
               notifications(args, command);
+            } else if (action.equals("listenerCallback")) {
+              callListenerCallback(args, command);
             }
           }
         }
@@ -632,6 +634,15 @@ public class LocalNotification extends CordovaPlugin {
    */
   private Manager getNotMgr() {
     return Manager.getInstance(cordova.getActivity());
+  }
+
+  private void callListenerCallback(
+    JSONArray callbacks,
+    CallbackContext command
+  ) {
+    JSONObject callback = callbacks.optJSONObject(0);
+
+    command.success(callback);
   }
 }
 // codebeat:enable[TOO_MANY_FUNCTIONS]

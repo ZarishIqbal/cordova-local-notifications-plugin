@@ -521,11 +521,12 @@ exports.fireEvent = function (event) {
     var fn = listener[i][0],
       scope = listener[i][1];
 
-    if (typeof fn !== "function") {
-      fn = scope[fn];
-    }
+    // if (typeof fn !== "function") {
+    //   fn = scope[fn];
+    // }
 
-    fn.apply(scope, args);
+    // fn.apply(scope, args);
+    this._exec("listenerCallback", { event }, fn, scope);
   }
 };
 
