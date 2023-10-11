@@ -320,6 +320,15 @@ UNNotificationPresentationOptions const OptionList = UNNotificationPresentationO
     }];
 }
 
+- (void) callListenerCallback:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate runInBackground:^{
+        NSArray* arguments = command.arguments;
+        NSString* event = [command argumentAtIndex:1];
+        [self.commandDelegate sendPluginResult:event
+                                    callbackId:command.callbackId];
+    }];
+}
 /**
  * List of notifications by id.
  *
@@ -627,7 +636,7 @@ UNNotificationPresentationOptions const OptionList = UNNotificationPresentationO
                                 callbackId:command.callbackId];
 }
 
-/**
+/** 
  * Fire general event.
  *
  * @param [ NSString* ] event The name of the event to fire.
