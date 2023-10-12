@@ -60,6 +60,11 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+            <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
             <provider android:name="de.appplant.cordova.plugin.notification.util.AssetProvider" android:authorities="${applicationId}.localnotifications.provider" android:exported="false" android:grantUriPermissions="true">
                 <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/localnotification_provider_paths"/>
             </provider>
@@ -78,13 +83,7 @@
             </receiver>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-            <uses-permission android:name="android.permission.WAKE_LOCK" />
-            <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-            <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-        </config-file>
 
         <source-file src="src/android/xml/localnotification_provider_paths.xml" target-dir="res/xml" />
 
