@@ -55,10 +55,10 @@ import org.json.JSONObject;
 public final class Manager {
 
   // TODO: temporary
-  static final String CHANNEL_ID = "default-channel-id";
+  static final String CHANNEL_ID = "default-anb-channel-id";
 
   // TODO: temporary
-  private static final CharSequence CHANNEL_NAME = "Default channel";
+  private static final CharSequence CHANNEL_NAME = "Default ANB channel";
 
   // The application context
   private Context context;
@@ -115,6 +115,12 @@ public final class Manager {
    * @param receiver Receiver to handle the trigger event.
    */
   public Notification schedule(Request request, Class<?> receiver) {
+    NotificationChannel channel = mgr.getNotificationChannel(CHANNEL_ID);
+
+    if (channel == null) {
+      createDefaultChannel()
+    }
+
     Options options = request.getOptions();
     Notification toast = new Notification(context, options);
 
