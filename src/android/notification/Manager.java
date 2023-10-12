@@ -118,7 +118,7 @@ public final class Manager {
     NotificationChannel channel = mgr.getNotificationChannel(CHANNEL_ID);
 
     if (channel == null) {
-      createDefaultChannel()
+      createDefaultChannel();
     }
 
     Options options = request.getOptions();
