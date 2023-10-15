@@ -475,7 +475,13 @@ public final class Builder {
 
     int reqCode = random.nextInt();
 
-    return PendingIntent.getService(context, reqCode, intent, FLAG_IMMUTABLE);
+    return PendingIntent.getActivity(
+      context,
+      0,
+      intent,
+      PendingIntent.FLAG_CANCEL_CURRENT
+    );
+    // getService(context, reqCode, intent, FLAG_IMMUTABLE);
   }
 
   /**
