@@ -115,6 +115,7 @@ public final class Manager {
    * @param receiver Receiver to handle the trigger event.
    */
   public Notification schedule(Request request, Class<?> receiver) {
+    NotificationManager mgr = getNotMgr();
     NotificationChannel channel = mgr.getNotificationChannel(CHANNEL_ID);
 
     if (channel == null) {
