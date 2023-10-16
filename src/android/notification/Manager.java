@@ -82,14 +82,15 @@ public final class Manager {
         ) !=
         PackageManager.PERMISSION_GRANTED
       ) {
-        final CordovaWebView view = webView.get();
-        ActivityCompat.requestPermissions(
-          (Activity) (view.getContext()),
-          new String[] { "android.permission.POST_NOTIFICATIONS" },
-          89
+        NotificationManager notificationManager = (NotificationManager) getSystemService(
+          context.NOTIFICATION_SERVICE
         );
-      } else {
-        createDefaultChannel();
+        if (!notificationManager.isNotificationPolicyAccessGranted()) {
+          Intent intent = new Intent(
+            android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
+          );
+          startActivity(intent);
+        }
       }
     }
   }
