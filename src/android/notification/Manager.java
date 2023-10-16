@@ -83,7 +83,7 @@ public final class Manager {
         ) !=
         PackageManager.PERMISSION_GRANTED
       ) {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(
           context.NOTIFICATION_SERVICE
         );
         if (!notificationManager.isNotificationPolicyAccessGranted()) {
