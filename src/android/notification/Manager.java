@@ -90,7 +90,7 @@ public final class Manager {
           Intent intent = new Intent(
             android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
           );
-          startActivity(intent);
+          context.startActivity(intent);
         }
       }
     }
