@@ -44,6 +44,7 @@ import de.appplant.cordova.plugin.badge.BadgeImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,8 +82,9 @@ public final class Manager {
         ) !=
         PackageManager.PERMISSION_GRANTED
       ) {
+        final CordovaWebView view = webView.get();
         ActivityCompat.requestPermissions(
-          (Activity) context,
+          (Activity) (view.getContext()),
           new String[] { "android.permission.POST_NOTIFICATIONS" },
           89
         );
