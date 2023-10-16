@@ -66,7 +66,6 @@ public abstract class AbstractClickReceiver extends IntentService {
     if (toast == null) return;
 
     onClick(toast, bundle);
-    this.intent = null;
   }
 
   /**
@@ -89,6 +88,13 @@ public abstract class AbstractClickReceiver extends IntentService {
    */
   protected Intent getIntent() {
     return intent;
+  }
+
+  /**
+   * Clear the intent.
+   */
+  protected void clearIntent() {
+    this.intent = null;
   }
 
   /**
