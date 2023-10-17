@@ -55,7 +55,7 @@ import org.json.JSONObject;
  * state like triggered or scheduled. Offers shortcut ways to schedule,
  * cancel or clear local notifications.
  */
-public final class Manager  {
+public final class Manager {
 
   // TODO: temporary
   static final String CHANNEL_ID = "default-anb-channel-id";
@@ -78,7 +78,6 @@ public final class Manager  {
     if (targetSdkVersion < 33) {
       createDefaultChannel();
     } else {
-      
       if (
         ContextCompat.checkSelfPermission(
           context,
@@ -88,14 +87,8 @@ public final class Manager  {
       ) {
         createDefaultChannel();
       } else {
-        new ActivityResultContracts.RequestPermission(),
-          isGranted -> {
-            if (isGranted) {
-              createDefaultChannel();
-            } else {
-              // Handle permission denied
-            }
-          }
+        new ActivityResultContracts.RequestPermission();
+        createDefaultChannel();
       }
     }
   }
