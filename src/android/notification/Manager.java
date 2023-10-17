@@ -38,9 +38,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.service.notification.StatusBarNotification;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -57,7 +55,7 @@ import org.json.JSONObject;
  * state like triggered or scheduled. Offers shortcut ways to schedule,
  * cancel or clear local notifications.
  */
-public final class Manager extends AppCompatActivity {
+public final class Manager  {
 
   // TODO: temporary
   static final String CHANNEL_ID = "default-anb-channel-id";
@@ -73,7 +71,6 @@ public final class Manager extends AppCompatActivity {
    *
    * @param context Application context
    */
-  private ActivityResultLauncher<String> requestPermissionLauncher;
 
   private Manager(Context context) {
     this.context = context;
@@ -81,17 +78,7 @@ public final class Manager extends AppCompatActivity {
     if (targetSdkVersion < 33) {
       createDefaultChannel();
     } else {
-      requestPermissionLauncher =
-        registerForActivityResult(
-          new ActivityResultContracts.RequestPermission(),
-          isGranted -> {
-            if (isGranted) {
-              createDefaultChannel();
-            } else {
-              // Handle permission denied
-            }
-          }
-        );
+      
       if (
         ContextCompat.checkSelfPermission(
           context,
@@ -101,9 +88,14 @@ public final class Manager extends AppCompatActivity {
       ) {
         createDefaultChannel();
       } else {
-        requestPermissionLauncher.launch(
-          "android.permission.POST_NOTIFICATIONS"
-        );
+        new ActivityResultContracts.RequestPermission(),
+          isGranted -> {
+            if (isGranted) {
+              createDefaultChannel();
+            } else {
+              // Handle permission denied
+            }
+          }
       }
     }
   }
