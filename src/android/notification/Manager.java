@@ -87,8 +87,11 @@ public final class Manager {
       ) {
         createDefaultChannel();
       } else {
-        new ActivityResultContracts.RequestPermission();
-        createDefaultChannel();
+        ActivityCompat.requestPermissions(
+          (Activity) context,
+          new String[] { "android.permission.POST_NOTIFICATIONS" },
+          89
+        );
       }
     }
   }
