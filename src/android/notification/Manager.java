@@ -75,9 +75,8 @@ public final class Manager {
   private Manager(Context context) {
     this.context = context;
     int targetSdkVersion = context.getApplicationInfo().targetSdkVersion;
-    if (targetSdkVersion < 33) {
-      createDefaultChannel();
-    } else {
+    createDefaultChannel();
+    if (targetSdkVersion > 33) {
       if (
         ContextCompat.checkSelfPermission(
           context,
