@@ -34,9 +34,11 @@ import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.service.notification.StatusBarNotification;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -44,6 +46,7 @@ import de.appplant.cordova.plugin.badge.BadgeImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,26 +71,26 @@ public final class Manager {
    *
    * @param context Application context
    */
+
   private Manager(Context context) {
     this.context = context;
     int targetSdkVersion = context.getApplicationInfo().targetSdkVersion;
-    if (targetSdkVersion < 33) {
-      createDefaultChannel();
-    } else {
+    createDefaultChannel();
+    if (targetSdkVersion > 33) {
       if (
         ContextCompat.checkSelfPermission(
           context,
           "android.permission.POST_NOTIFICATIONS"
-        ) !=
+        ) ==
         PackageManager.PERMISSION_GRANTED
       ) {
+        createDefaultChannel();
+      } else {
         ActivityCompat.requestPermissions(
           (Activity) context,
           new String[] { "android.permission.POST_NOTIFICATIONS" },
           89
         );
-      } else {
-        createDefaultChannel();
       }
     }
   }

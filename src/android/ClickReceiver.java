@@ -62,6 +62,7 @@ public class ClickReceiver extends AbstractClickReceiver {
     } else {
       notification.clear();
     }
+    clearIntent();
   }
 
   /**
