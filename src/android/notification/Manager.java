@@ -38,6 +38,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.service.notification.StatusBarNotification;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -76,21 +78,34 @@ public final class Manager {
     if (targetSdkVersion < 33) {
       createDefaultChannel();
     } else {
-      if (
-        ContextCompat.checkSelfPermission(
-          context,
-          "android.permission.POST_NOTIFICATIONS"
-        ) !=
-        PackageManager.PERMISSION_GRANTED
-      ) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(
-          context.NOTIFICATION_SERVICE
-        );
-        if (!notificationManager.isNotificationPolicyAccessGranted()) {
-          Intent intent = new Intent(
-            android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
+      private ActivityResultLauncher<String> requestPermissionLauncher;
+
+      /**
+       * Constructor
+       *
+       * @param context Application context
+       */
+      private Manager(Context context) {
+        this.context = context;
+        int targetSdkVersion = context.getApplicationInfo().targetSdkVersion;
+        if (targetSdkVersion < 33) {
+          createDefaultChannel();
+        } else {
+          requestPermissionLauncher = registerForActivityResult(
+              new ActivityResultContracts.RequestPermission(),
+              isGranted -> {
+                if (isGranted) {
+                  createDefaultChannel();
+                } else {
+                  // Handle permission denied
+                }
+              }
           );
-          context.startActivity(intent);
+          if (ContextCompat.checkSelfPermission(context, "android.permission.POST_NOTIFICATIONS") == PackageManager.PERMISSION_GRANTED) {
+            createDefaultChannel();
+          } else {
+            requestPermissionLauncher.launch("android.permission.POST_NOTIFICATIONS");
+          }
         }
       }
     }
